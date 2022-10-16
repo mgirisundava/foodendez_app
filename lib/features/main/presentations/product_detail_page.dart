@@ -11,8 +11,8 @@ class ProductDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var productData =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    var productData = ModalRoute.of(context)!.settings.arguments
+        as Map<String, dynamic>; // GET DATA FROM PRODUCTS PAGE
 
     return ProductDetailWidget(productData: productData);
   }
@@ -34,7 +34,12 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
       child: Scaffold(
         body: Stack(
           children: [
+            // LAYER 1
+
             buildBackground(),
+
+            // LAYER 2
+
             SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -55,68 +60,11 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                     const SizedBox(
                       height: 40,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Produk :',
-                            style: poppinsSemiBold18White,
-                            textAlign: TextAlign.start,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            widget.productData?['title'] ?? '',
-                            style: poppinsRegular16White,
-                            textAlign: TextAlign.start,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                                widget.productData?['image'] ?? ''),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                        ],
-                      ),
-                    ),
+                    buildProductDetailSection(widget),
                     const SizedBox(
                       height: 40,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: COLORS.blue,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                          ),
-                          shape: const StadiumBorder(),
-                        ),
-                        child: Text(
-                          'Kembali',
-                          style: poppinsMedium18Black,
-                        ),
-                      ),
-                    ),
+                    buildBackButton(context),
                     const SizedBox(
                       height: 40,
                     ),
@@ -143,6 +91,88 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
       ),
     );
   }
+}
+
+Widget buildBackButton(BuildContext context) {
+  return SizedBox(
+    width: MediaQuery.of(context).size.width / 2,
+    child: ElevatedButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      style: ElevatedButton.styleFrom(
+        primary: COLORS.blue,
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+        ),
+        shape: const StadiumBorder(),
+      ),
+      child: Text(
+        'Kembali',
+        style: poppinsMedium18Black,
+      ),
+    ),
+  );
+}
+
+Widget buildProductDetailSection(widget) {
+  return Container(
+    padding: const EdgeInsets.symmetric(
+      horizontal: 20,
+      vertical: 15,
+    ),
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: Colors.black.withOpacity(0.6),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Produk :',
+          style: poppinsSemiBold18White,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          widget.productData?['title'] ?? '',
+          style: poppinsRegular16White,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          'Tentang :',
+          style: poppinsSemiBold18White,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          widget.productData?['desc'] ?? '',
+          style: poppinsRegular16White,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            widget.productData?['image'] ?? '',
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+      ],
+    ),
+  );
 }
 
 Widget buildBackground() {

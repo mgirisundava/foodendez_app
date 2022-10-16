@@ -30,54 +30,21 @@ class _IntroWidgetState extends State<IntroWidget> {
       child: Scaffold(
         body: Stack(
           children: [
+            // LAYER 1
+
             buildBackground(),
+
+            // LAYER 2
+
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               width: double.infinity,
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  Text(
-                    'FOODENDEZ',
-                    style: poppinsBold24White,
-                    textAlign: TextAlign.center,
-                  ),
                   const Spacer(),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 2,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, ROUTER.home, (route) => false);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: COLORS.blue,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20,
-                        ),
-                        shape: const StadiumBorder(),
-                      ),
-                      child: Text(
-                        'Masuk',
-                        style: poppinsMedium18Black,
-                      ),
-                    ),
-                  ),
+                  buildLoginButton(context),
                   const SizedBox(
                     height: 100,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Versi 0.001',
-                      style: poppinsRegular14White,
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                 ],
               ),
@@ -87,6 +54,29 @@ class _IntroWidgetState extends State<IntroWidget> {
       ),
     );
   }
+}
+
+Widget buildLoginButton(BuildContext context) {
+  return SizedBox(
+    width: MediaQuery.of(context).size.width / 2,
+    child: ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamedAndRemoveUntil(
+            context, ROUTER.home, (route) => false);
+      },
+      style: ElevatedButton.styleFrom(
+        primary: COLORS.blue,
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+        ),
+        shape: const StadiumBorder(),
+      ),
+      child: Text(
+        'Masuk',
+        style: poppinsMedium18Black,
+      ),
+    ),
+  );
 }
 
 Widget buildBackground() {
@@ -118,14 +108,6 @@ Widget buildBackground() {
             image: AssetImage(IMAGES.background),
           ),
         ),
-        // child: BackdropFilter(
-        //   filter: ImageFilter.blur(sigmaX: 05.0, sigmaY: 05.0),
-        //   child: Container(
-        //     decoration: BoxDecoration(
-        //       color: Colors.white.withOpacity(0.0),
-        //     ),
-        //   ),
-        // ),
       ),
     ],
   );

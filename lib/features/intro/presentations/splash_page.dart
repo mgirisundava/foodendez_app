@@ -41,6 +41,8 @@ class _SplashWidgetState extends State<SplashWidget> {
       child: Scaffold(
         body: Stack(
           children: [
+            // LAYER 1 (BOTTOM)
+
             Container(
               width: double.infinity,
               height: double.infinity,
@@ -58,12 +60,34 @@ class _SplashWidgetState extends State<SplashWidget> {
                 ),
               ),
             ),
+
+            // LAYER 2 (MID)
+
             Container(
               width: double.infinity,
               height: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(IMAGES.background),
+                ),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                child: Container(
+                  decoration:
+                      BoxDecoration(color: Colors.white.withOpacity(0.0)),
+                ),
+              ),
+            ),
+
+            // LAYER 3 (TOP)
+
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(IMAGES.logo),
                 ),
               ),
             ),

@@ -120,7 +120,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           textAlign: TextAlign.right,
                         ),
                         Text(
-                          'Bara (xxx-xxx-xxx)',
+                          'Bara (+62 858-6378-1357)',
                           style: poppinsRegular16White,
                           textAlign: TextAlign.right,
                         ),

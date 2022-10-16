@@ -29,7 +29,12 @@ class _AboutWidgetState extends State<AboutWidget> {
       child: Scaffold(
         body: Stack(
           children: [
+            // LAYER 1
+
             buildBackground(),
+
+            // LAYER 2
+
             SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,87 +55,15 @@ class _AboutWidgetState extends State<AboutWidget> {
                     const SizedBox(
                       height: 40,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sejarah',
-                            style: poppinsSemiBold18White,
-                            textAlign: TextAlign.start,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'FOODENDEZ adalah usaha di bidang kuliner yang mempunyai beberapa produk dan variant diantaranya krispi kulit ikan patin, kulit ikan salmon, san Batirtu74 (Kurma Coklat). dan produk krispi kulit ikan patin sangatlah Best Seller dan terdapat variant baru yaitu rasa salted egg dan produk FOODENDEZ sudah tersedia di beberapa supermaket seperti Borma, Kunafe, Makuta, dll.',
-                            style: poppinsRegular16White,
-                            textAlign: TextAlign.start,
-                          ),
-                        ],
-                      ),
-                    ),
+                    buildProfileSection(),
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Visi & Misi',
-                            style: poppinsSemiBold18White,
-                            textAlign: TextAlign.start,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Belum ada visi dan misi',
-                            style: poppinsRegular16White,
-                            textAlign: TextAlign.start,
-                          ),
-                        ],
-                      ),
-                    ),
+                    buildMarketStrategySection(),
                     const SizedBox(
                       height: 40,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: COLORS.blue,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                          ),
-                          shape: const StadiumBorder(),
-                        ),
-                        child: Text(
-                          'Kembali',
-                          style: poppinsMedium18Black,
-                        ),
-                      ),
-                    ),
+                    buildBackButton(context),
                     const SizedBox(
                       height: 40,
                     ),
@@ -151,12 +84,96 @@ class _AboutWidgetState extends State<AboutWidget> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+Widget buildBackButton(BuildContext context) {
+  return SizedBox(
+    width: MediaQuery.of(context).size.width / 2,
+    child: ElevatedButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      style: ElevatedButton.styleFrom(
+        primary: COLORS.blue,
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+        ),
+        shape: const StadiumBorder(),
+      ),
+      child: Text(
+        'Kembali',
+        style: poppinsMedium18Black,
+      ),
+    ),
+  );
+}
+
+Widget buildMarketStrategySection() {
+  return Container(
+    padding: const EdgeInsets.symmetric(
+      horizontal: 20,
+      vertical: 15,
+    ),
+    decoration: BoxDecoration(
+      color: Colors.black.withOpacity(0.6),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Strategi Pasar',
+          style: poppinsSemiBold18White,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          'Upaya yang dilakukan dalam melakukan strategi pasar antara lain :\n\na. Bekerja sama dengan outlet baik tradisional ataupun modern market.\nb. Membuka link pertemenan sehingga memberikan info tentang produk.\nc. Mengikuti pelatihan yang diberikan oleh pihak terkait, baik swasta ataupun pemerintah\nd. Aktif di sosial media yang memberikan info tentang produk\ne. Mengikuti event/pameran yang diselenggarakan pihak swasta ataupun pihak dinas terkait\n\nPihak yang sudah bekerjasama dengan FOODENDEZ untuk pemasaran :\n\na. Borma Cinunuk\nb. Borma Majalaya\nc. Toko Oleh-Oleh Kunafe\nd. Kerabat Store Bandung',
+          style: poppinsRegular16White,
+          textAlign: TextAlign.start,
+        ),
+      ],
+    ),
+  );
+}
+
+Widget buildProfileSection() {
+  return Container(
+    padding: const EdgeInsets.symmetric(
+      horizontal: 20,
+      vertical: 15,
+    ),
+    decoration: BoxDecoration(
+      color: Colors.black.withOpacity(0.6),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Profil',
+          style: poppinsSemiBold18White,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          'FOODENDEZ adalah brand dari kegiatan usaha saya. Ikan biasanya di kenal dengan makanan untuk lauk sebagai teman nasi, namun kini saya ingin mengembangkan kembali dengan cara mengolah ikan ini menjadi makanan yang menarik, sehingga ikan dapat dikenal lebih luas oleh masyarakat. Cara saya memperkenalkan ikan ini secara luas yaitu dengan cara membuat hasil olahan dari ikan yang semenarik mungkin tanpa mengurangi isi nutrisi yang terkandung di dalamnya. Ikan banyak sekali mengandung nutrisi penting bagi kesehatan, kandungan yang termasuk dalam ikan yaitu : Vitamin A, D, B6, B12, Mineral, Protein, bahkan Omega 3 & DHA adalah nutrisi yg paling dominan di dalam ikan, sehingga makanan ini dapat di konsumsi oleh semua kalangan, mulai dari anak-anak hingga orang lanjut usia. FOODENDEZ juga menguluarkan produk berupa Kurcok atau disebut juga Kurma Cokelat, yang merupakan kurma kualitas terbaik yang diisi dengan berbagai varian rasa di dalamnya. Kemudian dilapisi oleh cokelat premium yang menjadikan perpaduan manis kurma dengan lezatnya cokelat dan kejutan rasa unik yang terdapat di dalamnya menyatu lumer pada saat dimakan.',
+          style: poppinsRegular16White,
+          textAlign: TextAlign.start,
+        ),
+      ],
+    ),
+  );
 }
 
 Widget buildBackground() {

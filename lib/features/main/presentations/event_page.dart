@@ -29,7 +29,12 @@ class _EventWidgetState extends State<EventWidget> {
       child: Scaffold(
         body: Stack(
           children: [
+            // LAYER 1
+
             buildBackground(),
+
+            // LAYER 2
+
             SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,62 +55,11 @@ class _EventWidgetState extends State<EventWidget> {
                     const SizedBox(
                       height: 40,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                      width: double.infinity,
-                      height: 400,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Acara',
-                            style: poppinsSemiBold18White,
-                            textAlign: TextAlign.start,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Spacer(),
-                          Center(
-                            child: Text(
-                              'Belum ada acara',
-                              style: poppinsRegular16White,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                    ),
+                    buildEventSection(),
                     const SizedBox(
                       height: 40,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: COLORS.blue,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20,
-                          ),
-                          shape: const StadiumBorder(),
-                        ),
-                        child: Text(
-                          'Kembali',
-                          style: poppinsMedium18Black,
-                        ),
-                      ),
-                    ),
+                    buildBackButton(context),
                     const SizedBox(
                       height: 40,
                     ),
@@ -132,6 +86,65 @@ class _EventWidgetState extends State<EventWidget> {
       ),
     );
   }
+}
+
+Widget buildBackButton(BuildContext context) {
+  return SizedBox(
+    width: MediaQuery.of(context).size.width / 2,
+    child: ElevatedButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      style: ElevatedButton.styleFrom(
+        primary: COLORS.blue,
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+        ),
+        shape: const StadiumBorder(),
+      ),
+      child: Text(
+        'Kembali',
+        style: poppinsMedium18Black,
+      ),
+    ),
+  );
+}
+
+Widget buildEventSection() {
+  return Container(
+    padding: const EdgeInsets.symmetric(
+      horizontal: 20,
+      vertical: 15,
+    ),
+    width: double.infinity,
+    height: 400,
+    decoration: BoxDecoration(
+      color: Colors.black.withOpacity(0.6),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Acara',
+          style: poppinsSemiBold18White,
+          textAlign: TextAlign.start,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const Spacer(),
+        Center(
+          child: Text(
+            'Belum ada acara',
+            style: poppinsRegular16White,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        const Spacer(),
+      ],
+    ),
+  );
 }
 
 Widget buildBackground() {
