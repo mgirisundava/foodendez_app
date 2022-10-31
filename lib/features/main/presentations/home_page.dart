@@ -1,9 +1,13 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodendez_app/core/consts/router.dart';
 import 'package:foodendez_app/core/styles/colors.dart';
 import 'package:foodendez_app/core/styles/textstyles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/res/images.dart';
 
@@ -24,10 +28,51 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  _launchURL() async {
+    const url = 'https://wa.me/085863781357.io';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.green.shade800,
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text('Konfirmasi'),
+                        content: const Text(
+                            'Apakah kamu yakin ingin menghubungi kami?'),
+                        actions: <Widget>[
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              textStyle: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            child: const Text('TIDAK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              textStyle: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            child: const Text('YA'),
+                            onPressed: () {
+                              _launchURL();
+                            },
+                          ),
+                        ],
+                      ));
+            },
+            child: const FaIcon(FontAwesomeIcons.whatsapp)),
         body: Stack(
           children: [
             buildBackground(),
@@ -109,38 +154,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                   ),
                   const Spacer(),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Contact Person',
-                          style: poppinsRegular16White,
-                          textAlign: TextAlign.right,
-                        ),
-                        Text(
-                          'Bara (+62 858-6378-1357)',
-                          style: poppinsRegular16White,
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Versi 0.001',
-                      style: poppinsRegular14White,
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
                 ],
               ),
             ),

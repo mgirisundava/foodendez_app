@@ -65,7 +65,7 @@ Widget buildLoginButton(BuildContext context) {
             context, ROUTER.home, (route) => false);
       },
       style: ElevatedButton.styleFrom(
-        primary: COLORS.blue,
+        backgroundColor: COLORS.blue,
         padding: const EdgeInsets.symmetric(
           vertical: 20,
         ),

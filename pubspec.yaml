@@ -37,6 +37,8 @@ dependencies:
   google_fonts: ^3.0.1
   responsive_sizer: ^3.1.1
   icons_launcher: ^2.0.4
+  url_launcher: ^6.1.6
+  font_awesome_flutter: ^10.2.1
 
 dev_dependencies:
   flutter_test:

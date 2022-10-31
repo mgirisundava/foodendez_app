@@ -96,7 +96,7 @@ Widget buildBackButton(BuildContext context) {
         Navigator.pop(context);
       },
       style: ElevatedButton.styleFrom(
-        primary: COLORS.blue,
+        backgroundColor: COLORS.blue,
         padding: const EdgeInsets.symmetric(
           vertical: 20,
         ),

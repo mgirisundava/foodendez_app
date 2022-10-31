@@ -101,7 +101,7 @@ Widget buildBackButton(BuildContext context) {
         Navigator.pop(context);
       },
       style: ElevatedButton.styleFrom(
-        primary: COLORS.blue,
+        backgroundColor: COLORS.blue,
         padding: const EdgeInsets.symmetric(
           vertical: 20,
         ),
@@ -126,52 +126,141 @@ Widget buildProductDetailSection(widget) {
       color: Colors.black.withOpacity(0.6),
       borderRadius: BorderRadius.circular(10),
     ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Produk :',
-          style: poppinsSemiBold18White,
-          textAlign: TextAlign.start,
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        'Produk :',
+        style: poppinsSemiBold18White,
+        textAlign: TextAlign.start,
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Text(
+        widget.productData?['title'] ?? '',
+        style: poppinsRegular16White,
+        textAlign: TextAlign.start,
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      widget.productData?['price'] == null
+          ? const SizedBox()
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Harga :',
+                  style: poppinsSemiBold18White,
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Rp. ${widget.productData?['price'] ?? ''}',
+                  style: poppinsRegular16White,
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+      Text(
+        'Tentang :',
+        style: poppinsSemiBold18White,
+        textAlign: TextAlign.start,
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Text(
+        widget.productData?['desc'] ?? '',
+        style: poppinsRegular16White,
+        textAlign: TextAlign.start,
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          widget.productData?['image'] ?? '',
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          widget.productData?['title'] ?? '',
-          style: poppinsRegular16White,
-          textAlign: TextAlign.start,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          'Tentang :',
-          style: poppinsSemiBold18White,
-          textAlign: TextAlign.start,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          widget.productData?['desc'] ?? '',
-          style: poppinsRegular16White,
-          textAlign: TextAlign.start,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            widget.productData?['image'] ?? '',
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-      ],
-    ),
+      ),
+      widget.productData['variant'].isEmpty
+          ? const SizedBox()
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Variant',
+                  style: poppinsSemiBold18White,
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: widget.productData?['variant'].length,
+                      itemBuilder: (context, index) => Padding(
+                            padding: EdgeInsets.only(left: index == 0 ? 0 : 15),
+                            child: Column(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 80,
+                                      height: 80,
+                                      child: Image.asset(
+                                        widget.productData?['variant'][index]
+                                            ['image'],
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width: 120,
+                                      child: Text(
+                                        widget.productData?['variant'][index]
+                                            ['title'],
+                                        style: poppinsRegular16White.copyWith(
+                                            fontSize: 12),
+                                        maxLines: 5,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      'Rp. ${widget.productData?['variant'][index]['price']}',
+                                      style: poppinsSemiBold18White.copyWith(
+                                          fontSize: 12),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )),
+                ),
+              ],
+            ),
+      const SizedBox(
+        height: 15,
+      ),
+    ]),
   );
 }
 
