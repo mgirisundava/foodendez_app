@@ -6,4 +6,5 @@ class ROUTER {
   static const event = 'apps.pages.event';
   static const products = 'apps.pages.products';
   static const productDetail = 'apps.pages.product_detail';
+  static const icLogoCircle = 'apps.pages.ic_logo_circle';
 }

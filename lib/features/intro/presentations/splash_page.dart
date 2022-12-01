@@ -25,7 +25,7 @@ class _SplashWidgetState extends State<SplashWidget> {
   @override
   void initState() {
     super.initState();
-    navigateToHome(3);
+    // navigateToHome(3);
   }
 
   navigateToHome(int duration) {
@@ -82,12 +82,14 @@ class _SplashWidgetState extends State<SplashWidget> {
 
             // LAYER 3 (TOP)
 
-            Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(IMAGES.logo),
+            Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 3,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(IMAGES.icLauncher),
+                  ),
                 ),
               ),
             ),

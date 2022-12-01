@@ -29,7 +29,7 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   _launchURL() async {
-    const url = 'https://wa.me/085863781357.io';
+    const url = 'https://wa.me/6285863781357';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
