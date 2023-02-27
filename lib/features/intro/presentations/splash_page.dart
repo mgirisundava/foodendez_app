@@ -25,7 +25,7 @@ class _SplashWidgetState extends State<SplashWidget> {
   @override
   void initState() {
     super.initState();
-    // navigateToHome(3);
+    navigateToHome(3);
   }
 
   navigateToHome(int duration) {
